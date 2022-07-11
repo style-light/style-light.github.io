@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Fast-Vid2Vid: Spatial-Temporal Compression for Video-to-Video Synthesis">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fast-Vid2Vid: Spatial-Temporal Compression for Video-to-Video Synthesis</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <script src="https://kit.fontawesome.com/ec39017701.js" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <div id="loading">
+    <div class="loader"></div>
+    <!-- <img id="loading-image" src="path/to/ajax-loader.gif" alt="Loading..." /> -->
+  </div>
+
+
+
+  <!-- <script> magnify("myimage", 3); </script> -->
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Fast-Vid2Vid: Spatial-Temporal Compression for Video-to-Video Synthesis</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <h3 style="color:#094879;">ECCV 2022</h3>
+
+                <span class="author-block">
+                  <a href="mailto:zhuolong@pjlab.org.cn" target="_blank">Long Zhuo</a><sup>1</sup>, </span>
+                <span class="author-block">
+                  <a href="https://wanggcong.github.io/" target="_blank">Guangcong Wang</a><sup>2</sup>, </span>
+                <span class="author-block">
+                  <a href="mailto:lishikai@sensetime.com" target="_blank">Shikai Li</a><sup>3</sup>, </span>
+                <!--&#8224-->
+                <span class="author-block">
+                  <a href="https://wywu.github.io/" target="_blank">Wayne Wu</a><sup>1,3</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://liuziwei7.github.io/" target="_blank">Ziwei Liu</a><sup>2 ✉</sup>
+                </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Shanghai AI Laboratory, </span>
+              <span class="author-block"><sup>2</sup>S-Lab, Nanyang Technological University, </span>
+              <span class="author-block"><sup>3</sup>SenseTime Research </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark inactiveLink">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+                <span class="link-block">
+                  <a href="to-be-loaded" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://youtu.be/CYurk8g4i4Y" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/fast-vid2vid/fast-vid2vid" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. 
+
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark inactiveLink">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data (To be Released)</span>
+                  </a>
+                  -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br><br>
+  <!-- Teaser Picture -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <img class="thumbnail" src="static/images/demo_V5_thumbnails-min_nobg.png" style="width:120%; margin-bottom:20px"> -->
+        <!-- <div class="img-magnifier-container">
+        <img id="magnifyimg" src="static/images/demo_V5_thumbnails-min_nobg.png" style="width:100%; margin-bottom:20px">
+      </div> -->
+
+        <a href="" target="_blank">
+          <img class="cover" id="mag" src="./static/images/Fig1.jpg"
+            style="width:800px; margin-bottom:20px">
+          <!-- <img class="cover" id="mag"  src="https://images.alphacoders.com/108/1086836.jpg" style="width:100%; margin-bottom:20px"> -->
+        </a>
+        <!-- <h3 class="has-text-centered">Hover mouse over the image for a zoomed-in view.</h3> -->
+        <!-- <script>
+        magnify("mag", 3);
+      </script> -->
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- Abstract. -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Video-to-Video synthesis (Vid2Vid) has achieved remarkable results in generating a photo-realistic video from a sequence of semantic maps. However, this pipeline suffers from high computational cost and long inference latency, which largely depends on two essential factors: 1) network architecture parameters, 2) sequential data stream. Recently, the parameters of image-based generative models have been significantly compressed via more efficient network architectures. Nevertheless, existing methods mainly focus on slimming network architectures and ignore the size of the sequential data stream. Moreover, due to the lack of temporal coherence, image-based compression is not sufficient for the compression of the video task. In this paper, we present a spatial-temporal compression framework, <b>Fast-Vid2Vid</b>, which focuses on data aspects of generative models. It makes the first attempt at time dimension to reduce computational resources and accelerate inference. Specifically, we compress the input data stream spatially and reduce the temporal redundancy. After the proposed spatial-temporal knowledge distillation, our model can synthesize key-frames using the low-resolution data stream. Finally, Fast-Vid2Vid interpolates intermediate frames by motion compensation with slight latency. On standard benchmarks, Fast-Vid2Vid achieves around real-time performance as 20 FPS and saves around 8&times computational cost on a single V100 GPU.
+            </p>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--/ Abstract. -->
+
+
+
+
+
+  <h3 class="title is-4 has-text-centered">Pipeline</h3>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <a href="" target="_blank">
+        <div align="center">
+          <img class="cover" id="mag" src="./static/images/pipeline.jpg"
+            style="width:95%; margin-bottom:20px">
+          <!-- <img class="cover" id="mag"  src="https://images.alphacoders.com/108/1086836.jpg" style="width:100%; margin-bottom:20px"> -->
+        </div>    
+        </a>
+        <!-- <h3 class="has-text-centered">Hover mouse over the image for a zoomed-in view.</h3> -->
+        <!-- <script>
+        magnify("mag", 3);
+      </script> -->
+      </div>
+    </div>
+
+  </section>
+
+
+  <h3 class="title is-4 has-text-centered">Performance of the Inference Speed</h3>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <a href="" target="_blank">
+          <img class="cover" id="mag" src="./static/images/performance.gif"
+            style="width:100%; margin-bottom:20px">
+          <!-- <img class="cover" id="mag"  src="https://images.alphacoders.com/108/1086836.jpg" style="width:100%; margin-bottom:20px"> -->
+        </a>
+        <!-- <h3 class="has-text-centered">Hover mouse over the image for a zoomed-in view.</h3> -->
+        <!-- <script>
+        magnify("mag", 3);
+      </script> -->
+      </div>
+    </div>
+
+  </section>
+
+
+  <br><br><br>
+
+    <!-- Paper video.-->
+  <section>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+        <h2 class="title is-3">Overview Video</h2>
+        <div class="publication-video" >
+          <iframe src="https://www.youtube.com/embed/CYurk8g4i4Y" frameborder="10"
+            allow="autoplay; encrypted-media" width="100%"  allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section> 
+  <!-- / Paper video.   -->
+  <!--
+  <h3 class="title is-4 has-text-centered">Overview Video</h3>
+  <div class="content has-text-centered">
+    <div class="hero-body " padding=-10rem>
+      <div class="container">
+        <video id="replay-video" controls muted preload loop width="100%">
+          <source src="./static/videos/overview.mp4" type="video/mp4">
+        </video>
+        <br>
+        <br>
+        <br>
+        
+      </div>
+    </div>
+  </div>
+-->
+  
+      <br>
+      <br>
+      
+
+    
+    
+      <h2 class="title is-3 has-text-centered">Comparison Results in Sketch2Face, Segmentation2City and Pose2Body</h2>
+      <h3 class="title is-4 has-text-centered">Sketch2Face</h3>
+
+      <div align="center">
+      <video id="replay-video" controls muted preload autoplay loop width="50%">
+        <source src="./static/video/face/face.mp4" type="video/mp4">
+      </video>
+      </div>
+
+      <br><br><br>
+      
+      <h3 class="title is-4 has-text-centered">Segmentation2City</h3>
+      </body>
+      <div align="center">
+      <video id="replay-video" controls muted preload autoplay loop width="50%">
+        <source src="./static/video/city/city1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div align="center">
+      <video id="replay-video" controls muted preload autoplay loop width="50%">
+        <source src="./static/video/city/city2.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <br><br><br>
+    <div align="center">
+      <h3 class="title is-4 has-text-centered">Pose2Body</h3>
+
+      <video id="replay-video" controls muted preload autoplay loop width="50%">
+        <source src="./static/video/pose/pose.mp4" type="video/mp4">
+      </video>
+    </div>
+  <!--/ Style-mixing -->
+  
+  <section class="section" id="Citaton">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Related Links</h2>
+      <p><a href="https://https://github.com/NVIDIA/vid2vid">Vid2Vid Synthesis</a> proposes a large netowrk to syntheisize the videos using semantic sequences.</p>
+
+      <p><a href="https://github.com/lychenyoko/content-aware-gan-compression">CA Compression</a> compresses GAN by applying the salient content for pruning the unimportant architectures.</p>
+      <p><a href="https://github.com/snap-research/CAT">CAT Compression</a> proposes an efficient convoltional block and a new knowledge distillation approach for compressing the generator.</p>
+      <p><a href="https://github.com/mit-han-lab/gan-compression">NAS Compression</a> compresses GAN by adopting nerual architecture search techneque to select the most effective set of channels in each convolution layer.</p>
+
+    </div>
+  </section>
+  
+  <section class="section" id="Citaton">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{zhuo2022fast,
+   author    = {Zhuo, Long and Wang, Guangcong and Li, Shikai and Wu, Wanye and Liu, Ziwei},
+   title     = {Fast-Vid2Vid: Spatial-Temporal Compression for Video-to-Video Synthesis},
+   booktitle = {European Conference on Computer Vision (ECCV)},   
+   year      = {2022},
+  }</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="logos">
+
+      <img class="thumbnail" src="static/images/shanghaiAILAB_up.jpeg" style="height:50px;">
+      <img class="thumbnail" src="static/images/NTU.png" style="height:50px;">
+      <img class="thumbnail" src="static/images/sensetime.jpeg" style="height:50px;">
+    </div>
+    <br>
+    <div class="columns is-centered">
+      <div class="content">
+        <p> Thanks to the great effort done by Nerfies' project, we borrow the website template from <a
+            href="https://github.com/nerfies/nerfies.github.io" target="_blank"> nerfies's webpage</a>. </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(window).on('load', function () {
+      $('#loading').hide();
+    })
+  </script>
+</body>
+
+</html>

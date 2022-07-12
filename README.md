@@ -7,12 +7,12 @@
 If you find this useful for your research, please cite the our paper.
 
 ```
-@inproceedings{zhuo2022fast,
-   author    = {Zhuo, Long and Wang, Guangcong and Li, Shikai and Wu, Wanye and Liu, Ziwei},
-   title     = {Fast-Vid2Vid: Spatial-Temporal Compression for Video-to-Video Synthesis},
+@inproceedings{wang2022stylelight,
+   author    = {Wang, Guangcong and Yang, Yinuo and Loy, Chen Change and Liu, Ziwei},
+   title     = {StyleLight: HDR Panorama Generation for Lighting Estimation and Editing},
    booktitle = {European Conference on Computer Vision (ECCV)},   
    year      = {2022},
-}
+  }
 ```
 
 or
